@@ -36,8 +36,6 @@ You can run the script by executing the Python file (`alarm_clock.py`) in your p
 ### Authors
 - [Yourcef MB](https://github.com/Xemum)
 
-### License
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ### Acknowledgments
 Special thanks to the authors of the libraries used in this project.
