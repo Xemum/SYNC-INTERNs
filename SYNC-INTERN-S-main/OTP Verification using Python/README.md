@@ -10,8 +10,9 @@ This Python script facilitates email-based OTP (One-Time Password) verification.
 1. Ensure you have a Gmail account.
 2. Turn on "Less secure app access" for your Gmail account, or generate an App Password if you have 2-step verification enabled.
 3. Replace `"example@gmail.com"` in the `sender_email` variable with your Gmail email address.
-4. Replace `"your password here"` in the `password` variable with your Gmail account password or generated App Password.
-5. Run the script.
+4. Replace `"your password here"` in the `password` variable with your  generated App Password
+   the link "https://myaccount.google.com/u/4/apppasswords"
+6. Run the script.
 
 ### How it Works
 1. The script generates a random OTP (6-digit number).
