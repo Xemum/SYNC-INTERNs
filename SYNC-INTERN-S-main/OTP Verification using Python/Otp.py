@@ -1,3 +1,4 @@
+import re
 import smtplib
 from random import randint
 from email.message import EmailMessage
@@ -10,8 +11,18 @@ def generate_otp():
         otp.append(str(randint(0, 9)))
     return ''.join(otp)
 
+# Function to validate email using regex
+def validate_email(email):
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(pattern, email)
+
 flag = True
 while flag:
+    receiver_email = input("Enter your email here: ")
+    if not validate_email(receiver_email):
+        print("Invalid email format. Please enter a valid email.")
+        continue
+
     otp = generate_otp()
 
     # SMTP server details
@@ -19,9 +30,8 @@ while flag:
     smtp_port = 465
 
     # Email credentials
-    sender_email = "exemple@gmail.com"
-    receiver_email = input("Enter your email here: ")
-    password = "your password here " #you should get it from apppasswords 
+    sender_email = "example@gmail.com"
+    password = "your password here"  # you should get it from app passwords
 
     # Email subject and body
     subject = "Email verification code"
@@ -36,10 +46,6 @@ while flag:
 
     # Create a secure SSL context
     context = ssl.create_default_context()
-
-    # Disable SSL certificate verification
-    context.check_hostname = False
-    context.verify_mode = ssl.CERT_NONE
 
     try:
         # Connect to the SMTP server and send the email
