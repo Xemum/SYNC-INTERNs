@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      input[type="url"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      .shortened-url {
+        margin-top: 20px;
+        word-break: break-all;
+        color: #007bff;
+        cursor: pointer; /* Add cursor pointer for clickable effect */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>URL Shortener</h1>
+      <form method="POST" action="{{ url_for('index') }}">
+        <input
+          type="url"
+          name="long_url"
+          placeholder="Enter the long URL"
+          required
+        />
+        <button type="submit">Get Link</button>
+      </form>
+      {% if short_url %}
+      <div class="shortened-url" onclick="copyToClipboard('{{ short_url }}')">
+        Click to Copy
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- JavaScript to copy the shortened URL to clipboard -->
+    <script>
+      function copyToClipboard(text) {
+        var input = document.createElement("textarea");
+        input.innerHTML = "http://127.0.0.1:5000/"+text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        alert("URL copied to clipboard!");
+      }
+    </script>
+  </body>
+</html>
